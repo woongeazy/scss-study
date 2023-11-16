@@ -1,0 +1,108 @@
+@use "_base.scss";
+$primary-color: red;
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  &.theme1 {
+    // placeholder : & (상위|부몸요소 대신)
+    background: darkblue;
+    color: white;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  a {
+    color: inherit;
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+    &:hover {
+      background: #000;
+      color: #fff;
+      font: {
+        weight: bold;
+        family: verdana, "Courier New", "Times New Roman"
+      }
+    }
+    //네임 스페이스
+    font: {
+      family: "Malgun Gothic", sans-serif;
+      size: 1.125rem;
+      weight: bold;
+      variant: normal;
+    }
+  }
+}
+
+@mixin theme($theme: DarkGray) {
+  background: $theme;
+  box-shadow: 0 0 1px rgba($theme, 0.25);
+  color: #fff;
+}
+.modal {
+  position: absolute;
+  width: 400px;
+  height: 350px;
+  padding: 50px;
+  top: 20%;
+  left: 20%;
+}
+.info {
+  @include theme;
+}
+.alert {
+  @include theme($theme: DarkRed);
+}
+.success {
+  @include theme($theme: DarkGreen);
+}
+
+
+
+
+%message-shared {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+// .box1 {
+//   @extend %message-shared;
+//   background-color: red;
+// }
+// .box2 {
+//   @extend %message-shared;
+//   background-color: green;
+// }
+// .box3 {
+//   @extend %message-shared;
+//   background-color: yellow;
+// }
+
+.box {
+  &1 {
+    @extend %message-shared;
+    background: darken($primary-color, 30%);
+  }
+  &2 {
+    @extend %message-shared;
+    background: lighten($primary-color, 10%);
+  }
+  &3 {
+    @extend %message-shared;
+    background: lighten($primary-color, 30%);
+  }
+}
